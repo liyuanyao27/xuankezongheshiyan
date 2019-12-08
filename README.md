@@ -89,7 +89,7 @@
 ###### 5.退课界面  
 ![退课界面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100623.png?raw=true)  
 退课界面由两部分构成，一个是JList另外是按钮部分，按钮部分包含两个按钮一个是确认退课按钮，另一个是退出界面的按钮。  
-若是没有选课在List框内是空的。退课的原理是在用户文件中将课程删除，这样用户文件为空，未选课。
+若是没有选课在List框内是空的。退课的原理是在用户文件中将课程删除，这样用户文件为空，未选课。  
 ```
 		btn1.addActionListener(new ActionListener(){
 		
@@ -126,4 +126,30 @@
 
 ![添加课程](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208101244.png?raw=true)  
 图片如上，非常简单，加入TextArea即可，按钮有两个，一个确认添加，一个退出界面。限制输入我认为用异常处理过于麻烦，判断异常后抛出异常，再catch异常，不如直接用if语句限制输入，简洁方便。
+```
+btn1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				String[] s4={"男","女"};
+				if(tf1.getText().trim().length()==0||tf2.getText().trim().length()==0||tf3.getText().trim().length()==0||tf4.getText().trim().length()==0||tf5.getText().trim().length()==0||tf6.getText().trim().length()==0||tf6.getText().trim().length()==0) {
 
+					JOptionPane.showMessageDialog(null, "信息不能为空！");
+					return;
+				}
+				else {
+					String str="课程号："+tf1.getText()+" ，课程名称："+tf2.getText()+" ，课程地点："+tf3.getText()+" ，课程时间："+tf4.getText()+"；"+"授课教师:工号："+tf5.getText()+" ,姓名："+tf6.getText()+" ,性别："+tf6.getText()+"。";
+					file.writeFile("course",str);
+					JOptionPane.showMessageDialog(null, "选课成功");
+				}
+			}
+		});
+```  
+这里限制了信息不能为空。  
+
+### 三.文件的输入输出  
+这一块比较麻烦，因为串起了整个程序，我写了三个方法一个是writeFile另一个是readFile，还有个一个WriteFile，作用看名字就能看出来了。需要自己定一个目录，在目录里可以寻找到给定文件名的txt文件，写入和读入。两个写入是给不同的窗体使用的。详情请见主程序。  
+
+
+
+
+### 四.总结  
+这次实验是一个综合性试验，非常考验学生的综合能力。我在这个实验中总结方法思考方法，有想到用二维数组和二维Map储存信息，但是比较难以实现，最后我使用了直接读取输出，这样方便简洁，并且内存占用较小。这次基本上把之前学习到的知识都用上了，让我对java的面向对象的程序设计有了更多的理解。
