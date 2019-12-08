@@ -44,6 +44,6 @@
 上面的程序是我的登录按钮监听器，当点击登录按钮后会与***Admin***文件中已保存的用户名和密码进行比较。若有相同的则转到下一个界面，既主界面  
 `Frame_index choice=new Frame_index();`  
 注册很简单，只要写入文件即可。  
-![登录成功](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095902.png?raw=true)
+![登录成功](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095902.png?raw=true "登陆成功")
 ##### 2.主界面
 
