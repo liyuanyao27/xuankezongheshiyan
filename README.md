@@ -1,1 +1,2 @@
-# xuankezongheshiyan
+# 学生选课系统综合实验
+![alt 属性文本](图片地址)
