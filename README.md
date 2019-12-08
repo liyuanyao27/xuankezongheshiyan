@@ -1,16 +1,16 @@
 # 学生选课系统综合实验
 
-[打印课表](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100041.png?raw=true)
-[退课界面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100623.png?raw=true)
-[退课成功](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100716.png?raw=true)
-[打印课表2](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100812.png?raw=true)
-[添加课程](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208101244.png?raw=true)  
+
+
+
+
 #### 本选课系统可以实现的主要功能：  
 1.学生登录，学生注册  
 2.学生选课  
 3.学生退课  
 4.打印课表  
-5.将登陆的学生所进行的操作保存至文档内登陆后会读取出此学生的信息（序列化，反序列化）
+5.将登陆的学生所进行的操作保存至文档内登陆后会读取出此学生的信息  
+6.添加课程
 
 
 
@@ -79,3 +79,51 @@
 ```
 以上是我的处理方法，关于readFile和writeFile函数在下面的文件处理大块中会介绍。
 ![选课成功页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100023.png?raw=true)  
+
+###### 4.打印课表界面  
+打印界面也由两部分组成，JList和Button。JList会读取文件中已保存的选课内容，如果没有显示空。之前我们已经选过课了，那我们来看一下选课后的打印界面。  
+![打印课表](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100041.png?raw=true)  
+这部分除了退出按钮使用了监听器外，其他的在实例化时就已经生成。故这部分只是对JList的又一次应用。  
+
+
+###### 5.退课界面  
+![退课界面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100623.png?raw=true)  
+退课界面由两部分构成，一个是JList另外是按钮部分，按钮部分包含两个按钮一个是确认退课按钮，另一个是退出界面的按钮。  
+若是没有选课在List框内是空的。退课的原理是在用户文件中将课程删除，这样用户文件为空，未选课。
+```
+		btn1.addActionListener(new ActionListener(){
+		
+			public void actionPerformed(ActionEvent arg0) {
+				String[] s2=file.readFile(file.readFile("identify")).split("。");
+				if(list.isSelectionEmpty()){
+					JOptionPane.showMessageDialog(null, "未退课");
+					return;
+				}
+				for(int i=0;i<s2.length;i++) {
+					if(list.isSelectedIndex(i)) {//判断课程是否被选中
+						s2[i]=null;//课程信息置为空
+					}
+					else {
+						s2[i]=s2[i]+"。";
+					}
+				}
+				file.WriteFile(s2,file.readFile("identify"));
+				JOptionPane.showMessageDialog(null, "退课成功！");
+				setVisible(false);
+			}
+		});
+
+```  
+
+![退课成功](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100716.png?raw=true)  
+
+
+完成后文件中的内容被删除，若打印课表会出现以下情况。  
+
+![打印课表2](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100812.png?raw=true)
+
+##### 6.添加课程界面  
+
+![添加课程](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208101244.png?raw=true)  
+图片如上，非常简单，加入TextArea即可，按钮有两个，一个确认添加，一个退出界面。限制输入我认为用异常处理过于麻烦，判断异常后抛出异常，再catch异常，不如直接用if语句限制输入，简洁方便。
+
