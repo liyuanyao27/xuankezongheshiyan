@@ -1,7 +1,7 @@
 # 学生选课系统综合实验
 
 
-[系统主页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095922.png?raw=true)
+
 [选课页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095952.png?raw=true)
 [选课成功页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100023.png?raw=true)  
 [打印课表](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100041.png?raw=true)
@@ -45,5 +45,19 @@
 `Frame_index choice=new Frame_index();`  
 注册很简单，只要写入文件即可。  
 ![登录成功](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095902.png?raw=true "登陆成功")
-##### 2.主界面
 
+
+
+##### 2.主界面
+主界面的设计很简单，运用绝对位置把四个按钮分为东南东北西北西南四个位置，在位置上放上按钮。  
+![系统主页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095922.png?raw=true)
+这部分编程比较简单只需要创界页面，在页面添加按钮，给四个按钮添加上监听器即可。举其中一例  
+```		JButton btn1=new JButton("学生选课");
+		btn1.setBounds(36, 56, 138, 88);
+		btn1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+			ChoiseCourse choice=new ChoiseCourse();
+			}
+		});
+```
+上述程序为学生选课按钮（西北按钮）一例，创建对象后创建监听器，当按钮有动作后会创建新的对象，选课窗口会被打开。
