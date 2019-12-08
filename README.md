@@ -1,9 +1,5 @@
 # 学生选课系统综合实验
 
-
-
-[选课页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095952.png?raw=true)
-[选课成功页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100023.png?raw=true)  
 [打印课表](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100041.png?raw=true)
 [退课界面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100623.png?raw=true)
 [退课成功](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100716.png?raw=true)
@@ -60,4 +56,26 @@
 			}
 		});
 ```
-上述程序为学生选课按钮（西北按钮）一例，创建对象后创建监听器，当按钮有动作后会创建新的对象，选课窗口会被打开。
+上述程序为学生选课按钮（西北按钮）一例，创建对象后创建监听器，当按钮有动作后会创建新的对象，选课窗口会被打开。  
+
+
+
+##### 3.选课界面  
+![选课页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208095952.png?raw=true)  
+选课界面由两部分构成，一个是JList另外是按钮部分，按钮部分包含两个按钮一个是确认选课按钮，另一个是退出界面的按钮。  
+这部分的窗体建立都很简单，比较难的是如何进行参数传递，即怎么将我选的课程加入Student中的属性Course中，后来在同学的启发下我有了一个新的想法。要不就不传参数了，直接将我选的科目保存在文件里，然后需要的时候直接读取，非常方便。
+```		btn1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				if(list.isSelectionEmpty()){
+					JOptionPane.showMessageDialog(null, "您未选择课程，请选择课程后再点击");
+					return;
+				}
+				for(int i=0;i<s2.length;i++) {
+                if(list.isSelectedIndex(i)&&file.readFile(file.readFile("identify")).contains(s1[i])==false) {
+						s2[i]=s1[i];}}
+			file.WriteFile(s2,file.readFile("identify"));
+				JOptionPane.showMessageDialog(null, "选课成功");
+				setVisible(false);}});
+```
+以上是我的处理方法，关于readFile和writeFile函数在下面的文件处理大块中会介绍。
+![选课成功页面](https://github.com/liyuanyao27/xuankezongheshiyan/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191208100023.png?raw=true)  
